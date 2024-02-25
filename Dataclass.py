@@ -88,7 +88,30 @@ class DoublyLinkedList:
             current = self.head
             for _ in range(index):
                 current = current.next
+            value = current.value
             current.prev.next = current.next
             current.next.prev = current.prev
             self.size -= 1
-            return current.value
+            return value
+
+    def set(self, index, value):
+        if index < 0 or index >= self.size:
+            raise IndexError("Index out of range")
+        current = self.head
+        for _ in range(index):
+            current = current.next
+        current.value = value
+
+    def get(self, index):
+        if index < 0 or index >= self.size:
+            raise IndexError("Index out of range")
+        current = self.head
+        for _ in range(index):
+            current = current.next
+        return current.value
+
+    def printReversed(self):
+        current = self.tail
+        while current:
+            print(current.value)
+            current = current.prev
